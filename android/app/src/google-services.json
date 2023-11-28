@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "564961208195",
+    "project_id": "repito-sathi",
+    "storage_bucket": "repito-sathi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564961208195:android:aeec2d5760a711092b38b6",
+        "android_client_info": {
+          "package_name": "com.repito.sathi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADZf_A9MBDBAB8E2DuYh8P4ckPLH3rnpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
