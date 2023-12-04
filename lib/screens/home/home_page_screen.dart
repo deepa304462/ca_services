@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../res/strings.dart';
+import '../../utils/messaging_service.dart';
 import '../../utils/utils.dart';
 import '../auth/edit_profile_screen.dart';
 import '../auth/login_screen.dart';
@@ -22,11 +23,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeBloc _homeBloc = HomeBloc();
+  final HomeBloc _updateFCM = HomeBloc();
   final HomeBloc _serviceRequestBloc = HomeBloc();
+
+  final _messagingService =
+  MessagingService(); // Instance of MessagingService for handling notifications
+
 
   @override
   void initState() {
     _homeBloc.add(GetServicesListEvent());
+
+    _messagingService
+        .init(context).then((value) {
+          updateFcmToken();
+    });
+
     super.initState();
   }
 
@@ -413,5 +425,9 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+
+  void updateFcmToken() {
+    _updateFCM.add(UpdateFCMTokenEvent(MessagingService.fcmToken ?? ''));
   }
 }

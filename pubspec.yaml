@@ -41,9 +41,10 @@ dependencies:
   another_flushbar: ^1.12.30
   google_sign_in: ^6.1.6
   firebase_auth: ^4.14.0
-  firebase_core: ^2.22.0
+  firebase_core: ^2.24.0
   shared_preferences: ^2.2.2
   flutter_speed_dial: ^7.0.0
+  firebase_messaging: ^14.7.6
 
 dev_dependencies:
   flutter_test:

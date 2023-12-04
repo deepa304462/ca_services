@@ -19,7 +19,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
 
   final List<Widget> _pages = [
     HomePage(),
-    notification_screen(),
+    NotificationScreen(),
     ProfilePage(),
   ];
 

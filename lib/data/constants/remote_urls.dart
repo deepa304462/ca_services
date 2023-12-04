@@ -10,5 +10,7 @@ class RemoteUrls{
   static String updateProfile = "repito/api/profile/update";
   static String changePassword = "repito/api/profile/password";
   static String serviceRequest = "repito/api/services/callback";
+  static String getNotification = "repito/api/common/notifications";
+  static String updateFCM = "repito/api/profile/token";
 
 }

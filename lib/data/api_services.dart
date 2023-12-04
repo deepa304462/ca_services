@@ -6,6 +6,7 @@ import 'package:ca_services/data/remote_services/models/get_profile_response_mod
 import 'package:ca_services/data/remote_services/models/get_service_response.dart';
 import 'package:ca_services/data/remote_services/models/get_state_list_response_model.dart';
 import 'package:ca_services/data/remote_services/models/log_in_with_google_response_model.dart';
+import 'package:ca_services/data/remote_services/models/notification_response.dart';
 import 'package:ca_services/data/remote_services/models/register_response.dart';
 import 'package:ca_services/data/remote_services/models/sign_in_response_model.dart';
 import 'package:ca_services/data/remote_services/models/update_profile_response_model.dart';
@@ -13,6 +14,7 @@ import 'package:ca_services/data/remote_services/models/user_register_model.dart
 import 'package:ca_services/data/remote_services/requests/change_password_request_model.dart';
 import 'package:ca_services/data/remote_services/requests/log_in_with_google_request_model.dart';
 import 'package:ca_services/data/remote_services/requests/sign_in_request_model.dart';
+import 'package:ca_services/screens/home/bloc/home_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../res/strings.dart';
 import 'adstract_services/remote_services.dart';
@@ -189,6 +191,42 @@ class ApiService extends RemoteDataService {
     final json = await NetworkUtils.post(url, headers: headers, body: data);
     return json;
   }
+
+  @override
+  Future<NotificationResponse> getNotification() async {
+    final url = Uri.https(RemoteUrls.baseURL, RemoteUrls.getNotification);
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final headers = {
+      HttpHeaders.contentTypeHeader: contentType,
+      "x-api-key": xApiKey,
+      'Authorization': 'Bearer ${preferences.getString(userToken)}',
+    };
+
+    final json = await NetworkUtils.get(url, headers: headers);
+
+    NotificationResponse model = NotificationResponse.fromJson(json);
+
+    return model;
+  }
+
+  @override
+  Future<dynamic> updateFCM(String fcmToken) async {
+    final url = Uri.https(RemoteUrls.baseURL, RemoteUrls.updateFCM);
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final headers = {
+      HttpHeaders.contentTypeHeader: contentType,
+      "x-api-key": xApiKey,
+      'Authorization': 'Bearer ${preferences.getString(userToken)}',
+    };
+    Map<String, String> data = {
+      "token" : fcmToken
+    };
+
+    final json = await NetworkUtils.post(url, headers: headers, body: data);
+    return json;
+  }
+
+
 }
 
 

@@ -8,15 +8,15 @@ class Common{
     showFlushbar(context: context,
         flushbar: Flushbar(
           forwardAnimationCurve: Curves.decelerate,
-          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-          padding: EdgeInsets.all(15),
+          margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: const EdgeInsets.all(15),
           message: massage,
           messageColor: Colors.red,
           backgroundColor: Colors.white,
           reverseAnimationCurve: Curves.easeInOut,
           positionOffset: 20,
-          icon: Icon(Icons.error,size: 20,color: Colors.red,),
-          duration: Duration(seconds: 3),
+          icon: const Icon(Icons.error,size: 20,color: Colors.red,),
+          duration: const Duration(seconds: 3),
           flushbarPosition: FlushbarPosition.TOP,
         )..show(context));
 
@@ -27,15 +27,15 @@ class Common{
     showFlushbar(context: context,
         flushbar: Flushbar(
           forwardAnimationCurve: Curves.decelerate,
-          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-          padding: EdgeInsets.all(15),
+          margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: const EdgeInsets.all(15),
           message: massage,
           messageColor: Colors.green,
           backgroundColor: Colors.white,
           reverseAnimationCurve: Curves.easeInOut,
           positionOffset: 20,
-          icon: Icon(Icons.error,size: 20,color: Colors.green,),
-          duration: Duration(seconds: 3),
+          icon: const Icon(Icons.error,size: 20,color: Colors.green,),
+          duration: const Duration(seconds: 3),
           flushbarPosition: FlushbarPosition.TOP,
         )..show(context));
 

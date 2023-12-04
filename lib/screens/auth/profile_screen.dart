@@ -189,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     fontWeight: FontWeight.bold),
                               ),
                               Expanded(
-                                child: Text(
+                                child: state.getProfileResponseModel.data?.cityName == null ? Text("") : Text(
                                   "${state.getProfileResponseModel.data?.address ?? ""}, ${state.getProfileResponseModel.data?.cityName ?? ""}, ${state.getProfileResponseModel.data?.stateName ?? ""}",
                                   style: GoogleFonts.archivo(
                                     color: Colors.grey.shade700,

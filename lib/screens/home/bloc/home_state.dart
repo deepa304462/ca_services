@@ -12,6 +12,14 @@ class ServiceSuccessState extends HomeState{
 
   ServiceSuccessState(this.getServiceResponse);
 }
+
+
+class NotificationSuccess extends HomeState{
+  final NotificationResponse notificationResponse;
+
+  NotificationSuccess(this.notificationResponse);
+}
+
 class ServiceRequestSuccessState extends HomeState{
    final serviceResponse;
 

@@ -4,6 +4,7 @@ import 'package:ca_services/business_logic/use_case/home_use_case/home_use_case.
 import 'package:meta/meta.dart';
 
 import '../../../data/remote_services/models/get_service_response.dart';
+import '../../../data/remote_services/models/notification_response.dart';
 import '../../../data/repository/home_repo_imp/home_repo_imp.dart';
 
 part 'home_event.dart';
@@ -22,6 +23,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     on<ServiceRequestEvent>((event, emit) async {
       await serviceRequest(event,emit);
+    });
+
+
+    on<GetNotificationEvent>((event, emit) async {
+      await gerNotification(event,emit);
+    });
+
+    on<UpdateFCMTokenEvent>((event, emit) async {
+      await updateFCM(event,emit);
     });
   }
 
@@ -76,4 +86,41 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
   }
+
+
+  gerNotification(GetNotificationEvent event, Emitter<HomeState> emit) async{
+    emit(HomeLoadingState());
+
+    try{
+      var data = await _homeUseCase.getNotification();
+      if (data.status != null) {
+        if (data.status!) {
+          if (data.data != null) {
+            emit(NotificationSuccess(data));
+          } else {
+            emit(HomeErrorState(data.message));
+          }
+        } else {
+          emit(HomeErrorState(data.message));
+        }
+      } else {
+        emit(HomeErrorState("Server error !!!"));
+      }
+
+    }catch(e){
+      emit(HomeErrorState("Something went wrong !"));
+    }
+
+
+  }
+
+  updateFCM(UpdateFCMTokenEvent event, Emitter<HomeState> emit) async {
+    try{
+      var data = await _homeUseCase.updateFCM(event.fcmToken);
+
+    }catch(e){
+      emit(HomeErrorState("Something went wrong !"));
+    }
+  }
+
 }
